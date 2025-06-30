@@ -17,7 +17,6 @@
       return true;
     }
 
-    // إنشاء كائن Date ثم طباعة بصيغة 30/6/2019
     function getDateFormatted(dateStr) {
       let day = parseInt(dateStr.substring(0, 2));
       let month = parseInt(dateStr.substring(3, 5)) - 1;
@@ -25,11 +24,10 @@
 
       let dateObj = new Date(year, month, day);
 
-      // طباعة بصيغة 30/6/2019
       let formatted = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`;
       alert("Formatted date: " + formatted);
 
-      return dateObj; // يرجع الكائن Date
+      return dateObj; 
     }
 
     window.onload = function () {
