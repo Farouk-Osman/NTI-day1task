@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Table Task</title>
+  <style>
+    .user_table {
+      width: 300px;
+      margin: 20px auto;
+      font-family: Arial, sans-serif;
+    }
+
+    table, th, td {
+      border: 2px solid black;
+      border-collapse: collapse;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+<div class="user_table">
+  <h1>Table of Users</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody id="userTableBody">
+    </tbody>
+  </table>
+</div>
+
+<script>
+  const tbody = document.getElementById('userTableBody');
+  let num = prompt("enter the no. of persons :");
+  num = parseInt(num);
+
+  if (!isNaN(num) && num > 0) {
+    for (let i = 0; i < num; i++) {
+      let name = "";
+      let age = 0;
+
+      do {
+        name = prompt(`enter user${i + 1} name :`);
+      } while (!name || name.length < 3 || name.length > 10);
+
+      do {
+        age = parseInt(prompt(`enter user${i + 1} age :`));
+      } while (isNaN(age) || age <= 10 || age >= 60);
+
+      const tr = document.createElement('tr');
+      const tdName = document.createElement('td');
+      const tdAge = document.createElement('td');
+
+      tdName.textContent = name;
+      tdAge.textContent = age;
+
+      tr.appendChild(tdName);
+      tr.appendChild(tdAge);
+      tbody.appendChild(tr);
+    }
+  } else {
+    alert("Invalid number of users.");
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Birth Date Task</title>
+  <script>
+    // دالة للتحقق من الصيغة
+    function validateDateFormat(dateStr) {
+      if (dateStr.length !== 10) return false;
+      if (dateStr[2] !== '-' || dateStr[5] !== '-') return false;
+
+      let day = dateStr.substring(0, 2);
+      let month = dateStr.substring(3, 5);
+      let year = dateStr.substring(6);
+
+      if (isNaN(day) || isNaN(month) || isNaN(year)) return false;
+
+      return true;
+    }
+
+    // دالة لإرجاع كائن التاريخ
+    function getDateObject(dateStr) {
+      let day = parseInt(dateStr.substring(0, 2));
+      let month = parseInt(dateStr.substring(3, 5)) - 1; // الشهر 0-based
+      let year = parseInt(dateStr.substring(6));
+      return new Date(year, month, day);
+    }
+
+    window.onload = function () {
+      let input = prompt("Enter your birthdate (DD-MM-YYYY):");
+
+      if (validateDateFormat(input)) {
+        const dateObj = getDateObject(input);
+        alert(dateObj);
+      } else {
+        alert("Wrong Date Format");
+      }
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>
