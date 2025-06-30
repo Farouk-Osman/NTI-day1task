@@ -3,7 +3,7 @@
 <head>
   <title>Birth Date Task</title>
   <script>
-    // دالة للتحقق من الصيغة
+    // تحقق من الصيغة DD-MM-YYYY
     function validateDateFormat(dateStr) {
       if (dateStr.length !== 10) return false;
       if (dateStr[2] !== '-' || dateStr[5] !== '-') return false;
@@ -17,20 +17,27 @@
       return true;
     }
 
-    // دالة لإرجاع كائن التاريخ
-    function getDateObject(dateStr) {
+    // إنشاء كائن Date ثم طباعة بصيغة 30/6/2019
+    function getDateFormatted(dateStr) {
       let day = parseInt(dateStr.substring(0, 2));
-      let month = parseInt(dateStr.substring(3, 5)) - 1; // الشهر 0-based
+      let month = parseInt(dateStr.substring(3, 5)) - 1;
       let year = parseInt(dateStr.substring(6));
-      return new Date(year, month, day);
+
+      let dateObj = new Date(year, month, day);
+
+      // طباعة بصيغة 30/6/2019
+      let formatted = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}`;
+      alert("Formatted date: " + formatted);
+
+      return dateObj; // يرجع الكائن Date
     }
 
     window.onload = function () {
       let input = prompt("Enter your birthdate (DD-MM-YYYY):");
 
       if (validateDateFormat(input)) {
-        const dateObj = getDateObject(input);
-        alert(dateObj);
+        let result = getDateFormatted(input); 
+        alert(result);
       } else {
         alert("Wrong Date Format");
       }
